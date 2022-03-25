@@ -3,7 +3,7 @@ const moment = require('moment');
 
 class HistoryChat{
     constructor(route){
-        this.route= './public/txt/chat.txt'
+        this.route= './public/chat.txt'
         this.message= [];
     }
 
