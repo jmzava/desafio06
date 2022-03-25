@@ -26,7 +26,6 @@ app.set('views','./public/views');
 // ----------------socket-----------------------------------
 
 io.on('connection', async (socket) => {
-    console.log('¡Nuevo cliente conectado!')
 
     //----------------------- socket mensajes 
     const message = await history.loadMessage()
@@ -48,7 +47,6 @@ io.on('connection', async (socket) => {
     })
 
     })
-
  
 
 //--------------- Server ------------------
