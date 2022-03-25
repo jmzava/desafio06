@@ -1,14 +1,7 @@
 
 class ProductContainer {
     constructor() {
-      this.product = [
-        // {
-        // // title: 'product.title',
-        // // price: 'product.price',
-        // // url: 'product.url',
-        // // id: 'this.productId'
-      // }
-    ];
+      this.product = [];
       this.productId = 0;
           }
     get productsAll(){
@@ -33,7 +26,7 @@ class ProductContainer {
         const addNewProduct = {
             title: product.title,
             price: product.price,
-            thumbnail: product.url,
+            url: product.url,
             id: this.productId
         }
         this.product.push(addNewProduct)
@@ -49,7 +42,7 @@ class ProductContainer {
     const updProduct = {
         title: body.title,
         price: body.price,
-        thumbnail: 'https://aqui.direccion.imagen',
+        url: body.url,
         id: idProduct
     }
       const findIndex = this.product.findIndex((prod) => prod.id === idProduct)

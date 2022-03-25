@@ -2,6 +2,7 @@
     
     const socket = io();
 
+
     socket.on('messages', data => {
           loadMessages(data)
         });
@@ -23,7 +24,7 @@
                         <td>${item.id}</td>
                         <td>${item.title}</td>
                         <td>${item.price}</td>
-                        <td>${item.url}</td>
+                        <td><img src="${item.url}" alt="${item.title}" width="25"></td>
                         </tr>`)
             }).join(" ")
              
@@ -38,7 +39,7 @@
                          <span id="chatName" class="direct-chat-name pull-right">${elem.email}</span> 
                         <span id= "chatDate" class="direct-chat-timestamp pull-left">${elem.date}</span> 
                     </div>
-                         <div id="chatText" class="direct-chat-text">${elem.texto}</div> 
+                         <div id="chatText" class="direct-chat-text">${elem.text}</div> 
                      `)
         }).join(" ");
         document.getElementById('messages').innerHTML = html;
@@ -46,12 +47,12 @@
     
     function addMessage() {
         
-        const mensaje = {
+        const newMessage = {
             email: document.getElementById('email').value,
-            texto: document.getElementById('texto').value
-        };
+            text: document.getElementById('text').value,
+            };
 
-        socket.emit('new-message', mensaje);
+        socket.emit('new-message', newMessage);
     }
     
     document.getElementById('frmPasion').addEventListener('submit', (e) => {
@@ -61,10 +62,11 @@
     
     document.getElementById('btn').addEventListener('click', () => {
 
-        newprod = {title: 'product.title',
-        price: 'product.price',
-        thumbnail: 'product.url',
-        id: 'this.productId'}
+        newprod = {
+        title: document.getElementById('title').value,
+        price: document.getElementById('price').value,
+        url: document.getElementById('url').value
+        }
         socket.emit('newProd', newprod)
     })
 
