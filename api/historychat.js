@@ -18,11 +18,7 @@ class HistoryChat{
             loadedMessage.push(newMessage)
             await fs.writeFile(this.route, JSON.stringify(loadedMessage ,null, 2))
         }catch(e){
-            if( e.code == "ENOENT"){
-                    fs.writeFile(this.route,'')
-                    return []
-                }
-                    throw new Error(e.message)
+             throw new Error(e.message)
             }
         
         }
