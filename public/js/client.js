@@ -14,22 +14,16 @@
     //---------------------funciones ---------------------
 
     async function loadProds(listProd) {
-        let htmlProd = {}
+        let htmlProd = ""
         const tableList = await fetch('views/partials/table.ejs').then(res => res.text())
+ 
         if (listProd.length === 0){
-                htmlProd = `No se encontraron Productos`
+            htmlProd = `No se encontraron Productos`
         }else{
-            htmlProd = listProd.map((item, index) =>{
-                return (`<tr>
-                        <td>${item.id}</td>
-                        <td>${item.title}</td>
-                        <td>${item.price}</td>
-                        <td><img src="${item.url}" alt="${item.title}" width="25"></td>
-                        </tr>`)
-            }).join(" ")
-             
+            htmlProd = ejs.render(tableList, {listProd})
+     
         }
-        document.getElementById('trTable').innerHTML = htmlProd;
+         document.getElementById('NuevaTabla').innerHTML = htmlProd;
          
     }
 
@@ -62,7 +56,7 @@
     
     document.getElementById('btn').addEventListener('click', () => {
 
-        newprod = {
+        const newprod = {
         title: document.getElementById('title').value,
         price: document.getElementById('price').value,
         url: document.getElementById('url').value
@@ -73,20 +67,6 @@
 
 }
 
-
-
-//     socket.on('products', async products => {
-//         const plantilla = await fetch('views/table.ejs').then(res => res.text())
-//         console.log(planitlla)
-//         // const template = Handlebars.compile(plantilla)
-//         // const html = template({products})
-
-//         // document.getElementById('tabla').innerHTML = html
-
-//     })
-
-// }
-    
     
  
 
